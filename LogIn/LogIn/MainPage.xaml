@@ -4,13 +4,14 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="LogIn.MainPage">
+             x:Class="LogIn.MainPage" BackgroundColor="White">
 
-    <StackLayout>
-        <!-- Place new controls here -->
-        <Label Text="Welcome to Xamarin.Forms!" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
+    <StackLayout VerticalOptions="Center">
+        <StackLayout Padding="20">
+            <Image Source="atago.jpg" WidthRequest="200"/>
+            <Entry x:Name="userName" Placeholder="Username" HorizontalOptions="FillAndExpand"/>
+            <Entry x:Name="passWord" Placeholder="Password"  IsPassword="True" HorizontalOptions="FillAndExpand"/>
+            <Button x:Name="btnLogin" Text="LogIn" BackgroundColor="#D3B474" HorizontalOptions="FillAndExpand" Clicked="LoginClicked" />
+        </StackLayout>
     </StackLayout>
-
 </ContentPage>

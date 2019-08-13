@@ -17,5 +17,23 @@ namespace LogIn
         {
             InitializeComponent();
         }
+
+        private void LoginClicked(object sender, EventArgs e)
+        {
+
+            if(string.IsNullOrEmpty(userName.Text))
+            {
+
+                DisplayAlert("Error", "You have to enter a valid username","Ok");
+            }
+            else if(string.IsNullOrEmpty(passWord.Text))
+            {
+                DisplayAlert("Error", "You have to enter a valid password", "Ok");
+            }
+            else
+            {
+                DisplayAlert("Welcome", "Hello " + userName.Text, "Ok");
+            }
+        }
     }
 }
