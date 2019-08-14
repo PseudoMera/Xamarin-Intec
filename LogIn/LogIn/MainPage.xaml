@@ -6,12 +6,12 @@
              mc:Ignorable="d"
              x:Class="LogIn.MainPage" BackgroundColor="White">
 
-    <StackLayout VerticalOptions="Center">
-        <StackLayout Padding="20">
-            <Image Source="atago.jpg" WidthRequest="200"/>
-            <Entry x:Name="userName" Placeholder="Username" HorizontalOptions="FillAndExpand"/>
-            <Entry x:Name="passWord" Placeholder="Password"  IsPassword="True" HorizontalOptions="FillAndExpand"/>
-            <Button x:Name="btnLogin" Text="LogIn" BackgroundColor="#D3B474" HorizontalOptions="FillAndExpand" Clicked="LoginClicked" />
-        </StackLayout>
-    </StackLayout>
+        <ScrollView>
+            <StackLayout Padding="20" VerticalOptions="CenterAndExpand">
+                <Image Source="atago.jpg" WidthRequest="200"/>
+                <Entry x:Name="userName" Placeholder="Username" HorizontalOptions="FillAndExpand"/>
+                <Entry x:Name="passWord" Placeholder="Password"  IsPassword="True" HorizontalOptions="FillAndExpand"/>
+                <Button x:Name="btnLogin" Text="LogIn" BackgroundColor="#D3B474" HorizontalOptions="FillAndExpand" Clicked="LoginClicked" />
+            </StackLayout>
+        </ScrollView>
 </ContentPage>
