@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             BackgroundImageSource="sakuraflower"
+             x:Class="DesignReplica.HomePage"          
+             >
+
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal" Padding="5">
+            <Label Text="Sakura Flowers Shop" 
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="CenterAndExpand"
+                   FontAttributes="Bold"
+                   FontSize="20"
+                   TextColor="White"
+                   />
+
+            <Button Text="i" 
+                    FontSize="20" 
+                    TextColor="White" 
+                    BackgroundColor="DeepPink" 
+                    CornerRadius="50"
+                    HorizontalOptions="End" 
+                    VerticalOptions="CenterAndExpand"
+                    x:Name="infoButton"
+                   Clicked="OnInfoButtonClicked"/>
+        </StackLayout>
+    </NavigationPage.TitleView>
+
+    <ContentPage.Content>
+        
+        <Grid Padding="20" VerticalOptions="CenterAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="4*"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label TextColor="White" FontSize="15" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+                <Label.Text>
+                    A cherry blossom is a flower of several trees of genus Prunus. The most well-known species is the Japanese cherry, Prunus serrulata, which is commonly called sakura (桜 or 櫻; さくら).</Label.Text>
+             </Label>
+            
+            <Frame Grid.Column="0" Grid.Row="1" >
+                <StackLayout Orientation="Vertical" >
+                <Image Source="buy" WidthRequest="100" HeightRequest="100"/>
+                <Label Text="Buy" TextColor="DeepPink" HorizontalOptions="CenterAndExpand"/>
+                </StackLayout>
+            </Frame>
+
+            <Frame Grid.Column="1" Grid.Row="1">
+                <StackLayout Orientation="Vertical" >
+                    <Image Source="sell" WidthRequest="100" HeightRequest="100"/>
+                    <Label Text="Sell" TextColor="DeepPink" HorizontalOptions="CenterAndExpand"/>
+                </StackLayout>
+            </Frame>
+
+            <Frame Grid.Column="0" Grid.Row="2">
+                <StackLayout Orientation="Vertical">
+                    <Image Source="rent" WidthRequest="100" HeightRequest="100"/>
+                    <Label Text="Rent" TextColor="DeepPink" HorizontalOptions="CenterAndExpand"/>
+                </StackLayout>
+            </Frame>
+
+            <Frame Grid.Column="1" Grid.Row="2">
+                <StackLayout Orientation="Vertical" >
+                    <Image Source="present" WidthRequest="100" HeightRequest="100"/>
+                    <Label Text="Present" TextColor="DeepPink" HorizontalOptions="CenterAndExpand"/>
+                </StackLayout>
+            </Frame>
+        </Grid>
+        
+    </ContentPage.Content>
+</ContentPage>
