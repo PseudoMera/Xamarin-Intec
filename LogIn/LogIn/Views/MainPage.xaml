@@ -9,9 +9,9 @@
         <ScrollView>
             <StackLayout Padding="20" VerticalOptions="CenterAndExpand">
                 <Image Source="atago.jpg" WidthRequest="200"/>
-                <Entry x:Name="userName" Placeholder="Username" HorizontalOptions="FillAndExpand"/>
-                <Entry x:Name="passWord" Placeholder="Password"  IsPassword="True" HorizontalOptions="FillAndExpand"/>
-                <Button x:Name="btnLogin" Text="LogIn" BackgroundColor="#D3B474" HorizontalOptions="FillAndExpand" Clicked="LoginClicked" />
+               <Entry Text="{Binding MyPerson.UserName}" Placeholder="Username" HorizontalOptions="FillAndExpand"/>
+              <Entry Text="{Binding MyPerson.PassWord}" Placeholder="Password"  IsPassword="True" HorizontalOptions="FillAndExpand"/>
+                <Button Text="LogIn" Command="{Binding LoginCommand}" BackgroundColor="#D3B474" HorizontalOptions="FillAndExpand"  />
             </StackLayout>
         </ScrollView>
 </ContentPage>
