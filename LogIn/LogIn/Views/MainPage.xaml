@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="LogIn.MainPage" BackgroundColor="White">
+
+        <ScrollView>
+            <StackLayout Padding="20" VerticalOptions="CenterAndExpand">
+               <Image Source="atago.jpg" WidthRequest="200"/>
+               <Entry Text="{Binding MyPerson.UserName}" Placeholder="Username" HorizontalOptions="FillAndExpand"/>
+              <Entry Text="{Binding MyPerson.PassWord}" Placeholder="Password"  IsPassword="True" HorizontalOptions="FillAndExpand"/>
+               <Button Text="LogIn" Command="{Binding LoginCommand}" BackgroundColor="#D3B474" HorizontalOptions="FillAndExpand"  />
+            </StackLayout>
+        </ScrollView>
+</ContentPage>

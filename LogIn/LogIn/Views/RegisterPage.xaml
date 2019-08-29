@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="LogIn.RegisterPage">
+
+    <NavigationPage.TitleView >
+
+        <Label Text="Register" 
+               VerticalOptions="Center"
+               FontSize="Title"
+               TextColor="White"/>
+    </NavigationPage.TitleView>
+    
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid Padding="20" VerticalOptions="CenterAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+
+
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100*"/>
+                </Grid.ColumnDefinitions>
+
+                <Frame Grid.Column="0" Grid.Row="0">
+                    <Image Source="atago" 
+                       WidthRequest="200"
+                       HeightRequest="200"/>
+                </Frame>
+                
+                <Entry Placeholder="Name" 
+                       Grid.Column="0" 
+                       Grid.Row="1"
+                       Text="{Binding MyPerson.UserName}"/>
+                
+                <Entry Placeholder="Email"
+                       Grid.Column="0" 
+                       Grid.Row="2"
+                       Keyboard="Email"
+                       Text="{Binding MyPerson.Email}"/>
+                
+                <Entry Placeholder="Password"
+                       Grid.Column="0" 
+                       Grid.Row="3"
+                       Text="{Binding MyPerson.PassWord}"/>
+                
+                <Entry Placeholder="Confirm password" 
+                       Grid.Column="0" 
+                       Grid.Row="4"
+                       Text="{Binding confirmPassword}"/>
+                
+                <Button Text="Register" 
+                        Grid.Column="0" 
+                        Grid.Row="5"
+                        Command="{Binding RegisterCommand}"/>
+                
+                <Label Text="{Binding RegisterError}"
+                       Grid.Column="0"
+                       Grid.Row="6"
+                       />
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
