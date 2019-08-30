@@ -35,8 +35,7 @@
 
                 <Frame Grid.Column="0" Grid.Row="0">
                     <Image Source="atago" 
-                       WidthRequest="200"
-                       HeightRequest="200"/>
+                       />
                 </Frame>
                 
                 <Entry Placeholder="Name" 
@@ -53,12 +52,14 @@
                 <Entry Placeholder="Password"
                        Grid.Column="0" 
                        Grid.Row="3"
-                       Text="{Binding MyPerson.PassWord}"/>
+                       Text="{Binding MyPerson.PassWord}"
+                       IsPassword="True"/>
                 
                 <Entry Placeholder="Confirm password" 
                        Grid.Column="0" 
                        Grid.Row="4"
-                       Text="{Binding confirmPassword}"/>
+                       Text="{Binding ConfirmPassword}"
+                       IsPassword="True"/>
                 
                 <Button Text="Register" 
                         Grid.Column="0" 

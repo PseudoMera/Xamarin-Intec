@@ -7,7 +7,7 @@
              x:Class="LogIn.HomePage"
             BarBackgroundColor="#D3B474"
             BarTextColor="White">
-  <ContentPage Title="Home"/>
-  <ContentPage Title="Option 1" />
-  <ContentPage Title="Option 2" />
+    <ContentPage Title="Home" IconImageSource="baseline_home_white_24"/>
+    <ContentPage Title="Videos" IconImageSource="baseline_video_library_white_24"/>
+  <ContentPage Title="Radio" IconImageSource="baseline_radio_white_24"/>
 </TabbedPage>

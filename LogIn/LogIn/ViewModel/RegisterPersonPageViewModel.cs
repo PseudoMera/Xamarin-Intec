@@ -29,7 +29,7 @@ namespace LogIn.ViewModel
         public Person MyPerson { get; set; }  = new Person();
         public ICommand RegisterCommand { get; set; }
 
-        public string confirmPassword { get; set; }
+        public string ConfirmPassword { get; set; }
         public RegisterPersonPageViewModel()
         {
             RegisterCommand = new Command(async () =>
@@ -48,17 +48,17 @@ namespace LogIn.ViewModel
                 {
                     RegisterError = "Your password cannot be empty";
                 }
-                else if(string.IsNullOrEmpty(confirmPassword))
+                else if(string.IsNullOrEmpty(ConfirmPassword))
                 {
                     RegisterError = "Your confirm password cannot be empty";
                 }
-                else if(!confirmPassword.Equals(MyPerson.PassWord))
+                else if(!ConfirmPassword.Equals(MyPerson.PassWord))
                 {
                     RegisterError = "Your password does not match";
                 }
                 else
                 {
-                    await App.Current.MainPage.Navigation.PushAsync(new HomePage());
+                    await App.Current.MainPage.Navigation.PushAsync(new HomePage(MyPerson.UserName));
                 }
             });
 

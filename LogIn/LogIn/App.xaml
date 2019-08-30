@@ -12,6 +12,7 @@
                 <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
                 <Setter Property="BackgroundColor" Value="#D3B474"/>
                 <Setter Property="CornerRadius" Value="50"/>
+                <Setter Property="TextColor" Value="White"/>
             </Style>
 
             <Style TargetType="Label">
@@ -31,6 +32,8 @@
             <Style TargetType="Frame">
                 <Setter Property="BackgroundColor" Value="#D3B474"/>
                 <Setter Property="HasShadow" Value="True"/>
+                <Setter Property="CornerRadius" Value="50"/>
+                <Setter Property="WidthRequest" Value="150"/>
             </Style>
         </ResourceDictionary>
 

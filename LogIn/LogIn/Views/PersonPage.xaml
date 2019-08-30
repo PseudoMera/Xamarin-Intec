@@ -13,8 +13,7 @@
 
                 <Frame>
                 <Image Source="atago"
-                       WidthRequest="200"
-                       HeightRequest="170"/>
+                   />
                 </Frame>
 
                 <Entry Text="{Binding MyPerson.UserName}" 

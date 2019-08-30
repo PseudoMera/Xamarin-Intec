@@ -43,7 +43,7 @@ namespace LogIn.ViewModel
                 }
                 else
                 {
-                    await App.Current.MainPage.Navigation.PushAsync(new HomePage());
+                    await App.Current.MainPage.Navigation.PushAsync(new HomePage(MyPerson.UserName));
                 }
             });
 
