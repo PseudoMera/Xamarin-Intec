@@ -17,7 +17,6 @@ namespace LogIn
         {
             InitializeComponent();
             BindingContext = new PersonPageViewModel();
-
         }
     }
 }

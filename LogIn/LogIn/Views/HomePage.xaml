@@ -5,7 +5,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="LogIn.HomePage"
-            BarBackgroundColor="Wheat">
+            BarBackgroundColor="#D3B474"
+            BarTextColor="White">
   <ContentPage Title="Home"/>
   <ContentPage Title="Option 1" />
   <ContentPage Title="Option 2" />
