@@ -6,6 +6,7 @@ using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 using System.ComponentModel;
+using ContactsManager.Views;
 
 namespace ContactsManager.ViewModels
 {
@@ -28,7 +29,7 @@ namespace ContactsManager.ViewModels
 
                 if(RegisterError.Equals(string.Empty))
                 {
-                    await App.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new MainPage()));
+                    await App.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new ContactsListPage()));
                 }
             });
 

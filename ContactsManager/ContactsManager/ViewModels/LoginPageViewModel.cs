@@ -30,7 +30,7 @@ namespace ContactsManager.ViewModels
 
                 if(LoginError.Equals(string.Empty))
                 {
-                    await App.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new MainPage()));
+                    await App.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new ContactsListPage()));
                 }
                 
                
