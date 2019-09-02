@@ -11,7 +11,7 @@
                FontSize="Title"
                TextColor="White"/>
     </NavigationPage.TitleView>
-    
+
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add"
                      Priority="0"
@@ -28,13 +28,15 @@
                 <DataTemplate>
                     <ViewCell>
                         <ViewCell.ContextActions>
-                            <MenuItem Text="More"/>
+                            <MenuItem Text="More"
+                                      Command="{Binding Path=BindingContext.EditContactCommand, Source={x:Reference contactsList}}"
+                                      CommandParameter="{Binding .}"/>
                             <MenuItem Text="Delete"
                                       IsDestructive="True"
-                                      Command="{Binding Path=BindingContext.DeleteElementCommand, Source={x:Reference contactsList}}"
+                                      Command="{Binding Path=BindingContext.DeleteContactCommand, Source={x:Reference contactsList}}"
                                       CommandParameter="{Binding .}"/>
                         </ViewCell.ContextActions>
-                        
+
                         <StackLayout Orientation="Vertical" Padding="20">
                             <StackLayout Orientation="Horizontal">
                                 <Frame Style="{StaticResource FrameStyleContacts}" Grid.Column="0" Grid.Row="1" Grid.RowSpan="3">

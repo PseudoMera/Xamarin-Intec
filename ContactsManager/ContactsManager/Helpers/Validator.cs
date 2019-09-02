@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Xamarin.Forms;
 
 namespace ContactsManager.Helpers
 {
@@ -45,6 +46,27 @@ namespace ContactsManager.Helpers
             else
             {
                 return string.Empty;
+            }
+        }
+
+        public static void MoreMenuValidator(this string result, Contact param)
+        {
+            if (result.Equals($"Call +{param.PhoneNumber}"))
+            {
+                Device.OpenUri(new Uri(String.Format("tel: {0}", $"{param.PhoneNumber}")));
+            }
+            else if (result.Equals($"Email {param.Email}"))
+            {
+                Device.OpenUri(new Uri(String.Format("mailto: {0}", $"{param.Email}")));
+            }
+            else if (result.Equals($"Message +{param.PhoneNumber}"))
+            {
+                Device.OpenUri(new Uri(String.Format("sms: {0}", $"{param.PhoneNumber}")));
+
+            }
+            else if (result.Equals("Edit"))
+            {
+
             }
         }
     }
