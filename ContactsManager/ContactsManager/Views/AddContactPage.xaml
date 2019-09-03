@@ -13,9 +13,21 @@
                      Command="{Binding AddCommand}"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
+        <ScrollView>
         <StackLayout Padding="20">
             <Frame Style="{StaticResource FrameStyleContacts}">
+                <Image x:Name="image"
+                       Source="{Binding contact.Photo}"/>
             </Frame>
+            <Button x:Name="takePhoto"
+                    Text="Take photo"
+                    Style="{StaticResource ButtonStyle}"
+                    Command="{Binding TakePhotoClicked}"/>
+            
+            <Button x:Name="pickPhoto"
+                    Text="Pick photo"
+                    Style="{StaticResource ButtonStyle}"/>
+            
             <Entry Placeholder="First name"
                    Text="{Binding contact.FirstName}"/>
             <Entry Placeholder="Last name"
@@ -29,5 +41,6 @@
             <Entry Placeholder="Relationship"
                    Text="{Binding contact.Relationship}"/>
         </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
