@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="ContactsManager.Views.EditContactPage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Save"
+                     Command="{Binding SaveProfile}"/>
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+        <StackLayout Padding="20">
+            <Frame Style="{StaticResource FrameStyleContacts}">
+                <Image Source="{Binding MyContact.Photo}"
+                       Style="{StaticResource ImagesStyle}"/>
+            </Frame>
+            <Entry Placeholder="First name"
+                   Text="{Binding MyContact.FirstName}"/>
+            <Entry Placeholder="Last name"
+                   Text="{Binding MyContact.LastName}"/>
+            <Entry Placeholder="Phone number"
+                   Text="{Binding MyContact.PhoneNumber}"/>
+            <Entry Placeholder="Email"
+                   Text="{Binding MyContact.Email}"/>
+            <Entry Placeholder="Adress"
+                   Text="{Binding MyContact.Adress}"/>
+            <Entry Placeholder="Relationship"
+                   Text="{Binding MyContact.Relationship}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

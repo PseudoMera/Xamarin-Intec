@@ -4,63 +4,64 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="ContactsManager.Views.ContactsListPage">
+             x:Class="ContactsManager.Views.ContactsListPage"
+             Title="Contacts"
+             NavigationPage.HasBackButton="False">
 
-    <NavigationPage.TitleView>
-        <Label Text="Contacts"
-               FontSize="Title"
-               TextColor="White"/>
-    </NavigationPage.TitleView>
 
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add"
-                     Priority="0"
-                     Order="Primary"/>
-    </ContentPage.ToolbarItems>
+<ContentPage.ToolbarItems>
+    <ToolbarItem Text="Add"
+                 Priority="0"
+                 Order="Primary"
+                 Command="{Binding AddCommand}"/>
 
-    <ContentPage.Content>
-        <ListView ItemsSource="{Binding Contacts}" 
-                  HasUnevenRows="True" 
-                  SeparatorColor="#005cb2" 
-                  CachingStrategy="RecycleElement"
-                  x:Name="contactsList">
-            <ListView.ItemTemplate >
-                <DataTemplate>
-                    <ViewCell>
-                        <ViewCell.ContextActions>
-                            <MenuItem Text="More"
+</ContentPage.ToolbarItems>
+
+<ContentPage.Content>
+    <ListView ItemsSource="{Binding Contacts}" 
+              HasUnevenRows="True" 
+              SeparatorColor="#005cb2" 
+              CachingStrategy="RecycleElement"
+              x:Name="contactsList"
+              SelectedItem="{Binding SelectedContact}">
+        <ListView.ItemTemplate >
+            <DataTemplate>
+                <ViewCell>
+                    <ViewCell.ContextActions>
+                        <MenuItem Text="More"
                                       Command="{Binding Path=BindingContext.EditContactCommand, Source={x:Reference contactsList}}"
                                       CommandParameter="{Binding .}"/>
-                            <MenuItem Text="Delete"
+                        <MenuItem Text="Delete"
                                       IsDestructive="True"
                                       Command="{Binding Path=BindingContext.DeleteContactCommand, Source={x:Reference contactsList}}"
                                       CommandParameter="{Binding .}"/>
-                        </ViewCell.ContextActions>
+                    </ViewCell.ContextActions>
 
-                        <StackLayout Orientation="Vertical" Padding="20">
-                            <StackLayout Orientation="Horizontal">
-                                <Frame Style="{StaticResource FrameStyleContacts}" Grid.Column="0" Grid.Row="1" Grid.RowSpan="3">
-                                    <Image Source="{Binding Photo}"
-                                           Style="{StaticResource ImagesStyle}"/>
-                                </Frame>
-                                <Label Text="{Binding FirstName}"
+                    <StackLayout Orientation="Vertical" Padding="20">
+                        <StackLayout Orientation="Horizontal">
+                            <Frame Style="{StaticResource FrameStyleContacts}">
+                                <Image Source="{Binding Photo}"
+                                       Style="{StaticResource ImagesStyle}"/>
+                            </Frame>
+                            <Label Text="{Binding FirstName}"
                                        FontSize="Title"
                                        VerticalOptions="Center"
                                        TextColor="#000000"/>
-                                <Label Text="{Binding LastName}"
+                            
+                            <Label Text="{Binding LastName}"
                                         FontSize="Title"
                                        VerticalOptions="Center"
                                        TextColor="#000000"/>
 
-                            </StackLayout>
-                            <Label Text="{Binding PhoneNumber}"
+                        </StackLayout>
+                        <Label Text="{Binding PhoneNumber}"
                                    TextColor="LightSlateGray"/>
 
-                        </StackLayout>
+                    </StackLayout>
 
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </ContentPage.Content>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</ContentPage.Content>
 </ContentPage>

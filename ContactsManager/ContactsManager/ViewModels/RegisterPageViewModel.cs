@@ -29,7 +29,7 @@ namespace ContactsManager.ViewModels
 
                 if(RegisterError.Equals(string.Empty))
                 {
-                    await App.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(new ContactsListPage()));
+                    await App.Current.MainPage.Navigation.PushAsync(new ContactsListPage());
                 }
             });
 

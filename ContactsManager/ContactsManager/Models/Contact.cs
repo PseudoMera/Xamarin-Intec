@@ -1,12 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 namespace ContactsManager.Models
 {
-    public class Contact
+    public class Contact : INotifyPropertyChanged
     {
-        public string FirstName { get; set; }
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        string _firstName;
+        public string FirstName
+        {
+            get
+            {
+                return _firstName;
+            }
+            set
+            {
+                _firstName = value;
+                OnPropertyChanged(nameof(FirstName));
+            }
+        }
         public string LastName { get; set; }
 
         public string PhoneNumber { get; set; }
@@ -19,5 +34,13 @@ namespace ContactsManager.Models
         public string Relationship { get; set; }
         public string Photo { get; set; }
 
+        protected void OnPropertyChanged(string change)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(change));
+            }
+        }
     }
 }

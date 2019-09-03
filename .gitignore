@@ -195,3 +195,5 @@ FakesAssemblies/
 .vscode/settings.json
 
 db.lock
+DesignReplica/
+LogIn/

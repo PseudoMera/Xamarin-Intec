@@ -1,4 +1,5 @@
 ﻿using ContactsManager.Models;
+using ContactsManager.Views;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -49,7 +50,7 @@ namespace ContactsManager.Helpers
             }
         }
 
-        public static void MoreMenuValidator(this string result, Contact param)
+       public static void MoreMenuValidator(this string result, Contact param)
         {
             if (result.Equals($"Call +{param.PhoneNumber}"))
             {
@@ -64,10 +65,7 @@ namespace ContactsManager.Helpers
                 Device.OpenUri(new Uri(String.Format("sms: {0}", $"{param.PhoneNumber}")));
 
             }
-            else if (result.Equals("Edit"))
-            {
-
-            }
+           
         }
     }
 }
