@@ -22,11 +22,15 @@
             <Button x:Name="takePhoto"
                     Text="Take photo"
                     Style="{StaticResource ButtonStyle}"
+                    HorizontalOptions="Center"
+                    Padding="20"
                     Command="{Binding TakePhotoClicked}"/>
             
             <Button x:Name="pickPhoto"
                     Text="Pick photo"
-                    Style="{StaticResource ButtonStyle}"/>
+                    Style="{StaticResource ButtonStyle}"
+                     HorizontalOptions="Center"
+                    Padding="20"/>
             
             <Entry Placeholder="First name"
                    Text="{Binding contact.FirstName}"/>
