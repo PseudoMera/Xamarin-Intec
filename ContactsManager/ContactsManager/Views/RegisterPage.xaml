@@ -15,8 +15,8 @@
     </NavigationPage.TitleView>
     
     <ContentPage.Content>
-        <StackLayout>
-            <ScrollView>
+        <ScrollView>
+            <StackLayout>
                 <Grid Padding="20" VerticalOptions="CenterAndExpand">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
@@ -36,7 +36,7 @@
 
                     <Frame Style="{StaticResource  FrameStyle}">
                         <Image Source="kuvshinov.9" 
-                               Style="{StaticResource ImagesStyle}"/>
+                         />
                     </Frame>
 
                     <Entry Placeholder="Name" 
@@ -71,9 +71,10 @@
                     <Label Text="{Binding RegisterError}"
                            HorizontalOptions="CenterAndExpand"
                            Grid.Column="0"
-                           Grid.Row="6"/>
+                           Grid.Row="6"
+                           TextColor="Red"/>
                 </Grid>
-            </ScrollView>
-        </StackLayout>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

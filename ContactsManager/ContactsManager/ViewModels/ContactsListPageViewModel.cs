@@ -16,38 +16,43 @@ namespace ContactsManager.ViewModels
 
         public ObservableCollection<Contact> Contacts { get; set; } = new ObservableCollection<Contact>();
 
-        Contact contact;
+        //Contact contact;
         public Contact SelectedContact
         {
-            get
-            {
-                return contact;
-            }
-            set
-            {
-                contact = value;           
-            }
+            get; set;
+           
         }
+
 
         public ICommand DeleteContactCommand { get; set; } 
         public ICommand EditContactCommand { get; set; }
         public ICommand AddCommand { get; set; }
-        public ContactsListPageViewModel()
+        public ICommand DeleteAccount { get; set; }
+        AccountDB Db  = new AccountDB();
+        public ContactsListPageViewModel(Account account)
         {
-           // Contacts.Add(new Contact() { FirstName = "Albin", LastName = "Frias", PhoneNumber = "829-743-1205", Email="albinest@gmail.com",Photo = "https://wallpapercave.com/wp/ZW0anaB.jpg"});
-            //Contacts.Add(new Contact() { FirstName = "Albin", LastName = "Frias", PhoneNumber = "829-743-1205", Email = "albinest@gmail.com", Photo = "https://wallpapercave.com/wp/wp266304.png" });
-           // Contacts.Add(new Contact() { FirstName = "Albin", LastName = "Frias", PhoneNumber = "829-743-1205", Email = "albinest@gmail.com", Photo = "https://images.template.net/wp-content/uploads/2015/09/16232744/Burn-Dark-Wallpaper-Free-Download.jpg" });
-
-
+            Contacts = Db.FindContact(account);
             DeleteContactCommand= new Command<Contact>(async (param) =>
             {
                var result = await App.Current.MainPage.DisplayActionSheet($"Are you sure you want to delete {param.FirstName} {param.LastName}", "Cancel", "Delete");
                if(result.Equals("Delete"))
                 {
+                    Db.DeleteContact(param);
                     Contacts.Remove(param);
                 }
             });
 
+            DeleteAccount = new Command(async() =>
+            {
+                var result = await App.Current.MainPage.DisplayActionSheet($"Are you sure you want to delete {account.Name}", "Cancel", "Delete");
+                if (result.Equals("Delete"))
+                {
+                    Db.DeleteAccount(account);
+                    await App.Current.MainPage.Navigation.PopToRootAsync();
+                }
+            });
+
+          
             EditContactCommand = new Command<Contact>(async (param) =>
             {
                 var result = await App.Current.MainPage.DisplayActionSheet(null,"Cancel",null, $"Call +{param.PhoneNumber}", 
@@ -56,8 +61,9 @@ namespace ContactsManager.ViewModels
                 result.MoreMenuValidator(param);
                 if (result.Equals("Edit"))
                 {
-                    contact = param;
-                   await App.Current.MainPage.Navigation.PushAsync(new EditContactPage(contact));
+                   SelectedContact = param;
+                   await App.Current.MainPage.Navigation.PushAsync(new EditContactPage(SelectedContact));
+                    SubscribeEditContact();
 
                 }
             });
@@ -65,18 +71,19 @@ namespace ContactsManager.ViewModels
             AddCommand = new Command(async () =>
             {
                 await App.Current.MainPage.Navigation.PushAsync(new AddContactPage());
+                SubscribeAddContact(account);
+
             });
 
-            SubscribeAddContact();
-            SubscribeEditContact();
+
         }
 
-        public void SubscribeAddContact()
+        public void SubscribeAddContact(Account account)
         {
             MessagingCenter.Subscribe<AddContactPageViewModel, Contact>(this, "CreateContact", (s, a) =>
             {
+                Db.AddContact(a, account);
                 Contacts.Add(a);
-                //MessagingCenter.Unsubscribe<AddContactPageViewModel, Contact>(this, "CreateContact");
             });
         }
 
@@ -84,7 +91,8 @@ namespace ContactsManager.ViewModels
         {
             MessagingCenter.Subscribe<EditContactPageViewModel, Contact>(this, "EditContact", (s, a) =>
             {
-               var res =  Contacts.FirstOrDefault(x => x.FirstName == contact.FirstName);
+                Db.UpdateContact(a);
+               var res =  Contacts.FirstOrDefault(x => x.FirstName == SelectedContact.FirstName);
                int index = Contacts.IndexOf(res);
                Contacts[index] = a;
             });

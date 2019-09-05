@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
+using SQLite.Net.Attributes;
 
 namespace ContactsManager.Models
 {
@@ -9,18 +10,15 @@ namespace ContactsManager.Models
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        string _firstName;
+        [PrimaryKey, AutoIncrement]
+        public int Id { get; set; }
+    
+
+        [Indexed]
+        public int AccountId { get; set; }
         public string FirstName
-        {
-            get
-            {
-                return _firstName;
-            }
-            set
-            {
-                _firstName = value;
-                OnPropertyChanged(nameof(FirstName));
-            }
+        { 
+            get; set;
         }
         public string LastName { get; set; }
 
@@ -36,11 +34,7 @@ namespace ContactsManager.Models
 
         protected void OnPropertyChanged(string change)
         {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null)
-            {
-                handler(this, new PropertyChangedEventArgs(change));
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(change));
         }
     }
 }

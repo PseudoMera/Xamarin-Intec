@@ -50,22 +50,49 @@ namespace ContactsManager.Helpers
             }
         }
 
-       public static void MoreMenuValidator(this string result, Contact param)
+       public static async void MoreMenuValidator(this string result, Contact param)
         {
             if (result.Equals($"Call +{param.PhoneNumber}"))
             {
-                Device.OpenUri(new Uri(String.Format("tel: {0}", $"{param.PhoneNumber}")));
+                if (!string.IsNullOrEmpty(param.PhoneNumber))
+                    Device.OpenUri(new Uri(String.Format("tel: {0}", $"{param.PhoneNumber}")));
+             
             }
             else if (result.Equals($"Email {param.Email}"))
             {
-                Device.OpenUri(new Uri(String.Format("mailto: {0}", $"{param.Email}")));
+                if (!string.IsNullOrEmpty(param.Email))
+                    Device.OpenUri(new Uri(String.Format("mailto: {0}", $"{param.Email}")));
+                else
+                    await App.Current.MainPage.DisplayAlert("Error", "This contact does not have an email", "Ok");
             }
             else if (result.Equals($"Message +{param.PhoneNumber}"))
             {
-                Device.OpenUri(new Uri(String.Format("sms: {0}", $"{param.PhoneNumber}")));
+                if(!string.IsNullOrEmpty(param.PhoneNumber))
+                    Device.OpenUri(new Uri(String.Format("sms: {0}", $"{param.PhoneNumber}")));
 
             }
            
+        }
+
+        public static string AddValidator(this string result, Contact contact)
+        {
+            if(string.IsNullOrEmpty(contact.FirstName))
+            {
+                return "You need to enter a name";
+            }
+            else if(string.IsNullOrEmpty(contact.PhoneNumber))
+            {
+                return "You need to enter a phone number";
+            }
+            else if(contact.PhoneNumber.Length != 10)
+            {
+                return "Your phone number needs to have 10 digits";
+            }
+            else
+            {
+                return string.Empty;
+            }
+
         }
     }
 }

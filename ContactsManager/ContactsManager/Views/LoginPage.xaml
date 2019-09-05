@@ -20,7 +20,7 @@
 
                 <Frame Style="{StaticResource FrameStyle}">
                     <Image Source="kuvshinov.9"
-                   Style="{StaticResource  ImagesStyle}"/>
+                 />
                 </Frame>
 
                 <Entry Placeholder="Email"
@@ -46,7 +46,8 @@
                 </Label>
 
                 <Label Text="{Binding LoginError}"
-                   HorizontalOptions="CenterAndExpand"/>
+                   HorizontalOptions="CenterAndExpand"
+                       TextColor="Red"/>
 
             </StackLayout>
         </ScrollView>

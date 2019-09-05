@@ -14,8 +14,12 @@
                  Priority="0"
                  Order="Primary"
                  Command="{Binding AddCommand}"/>
+        <ToolbarItem Text="Delete Account"
+                 Priority="1"
+                 Order="Primary"
+                 Command="{Binding DeleteAccount}"/>
 
-</ContentPage.ToolbarItems>
+    </ContentPage.ToolbarItems>
 
 <ContentPage.Content>
     <ListView ItemsSource="{Binding Contacts}" 
@@ -23,8 +27,10 @@
               SeparatorColor="#005cb2" 
               CachingStrategy="RecycleElement"
               x:Name="contactsList"
-              SelectedItem="{Binding SelectedContact}">
-        <ListView.ItemTemplate >
+              SelectedItem="{Binding SelectedContact, Mode=TwoWay}"
+              ItemTapped="OnItemTapped">
+            
+            <ListView.ItemTemplate >
             <DataTemplate>
                 <ViewCell>
                     <ViewCell.ContextActions>
@@ -37,29 +43,27 @@
                                       CommandParameter="{Binding .}"/>
                     </ViewCell.ContextActions>
 
-                    <StackLayout Orientation="Vertical" Padding="20">
+                        <StackLayout Orientation="Vertical" Padding="20">
                         <StackLayout Orientation="Horizontal">
                             <Frame Style="{StaticResource FrameStyleContacts}">
-                                <Image Source="{Binding Photo}"
-                                       Style="{StaticResource ImagesStyle}"/>
+                                <Image Source="{Binding Photo}"/>
                             </Frame>
                             <Label Text="{Binding FirstName}"
                                        FontSize="Title"
                                        VerticalOptions="Center"
                                        TextColor="#000000"/>
-                            
-                            <Label Text="{Binding LastName}"
+
+                                <Label Text="{Binding LastName}"
                                         FontSize="Title"
                                        VerticalOptions="Center"
                                        TextColor="#000000"/>
+                        </StackLayout>
+                        
+                        <Label Text="{Binding PhoneNumber}"
+                                   TextColor="#34515e"/>
 
                         </StackLayout>
-                        <Label Text="{Binding PhoneNumber}"
-                                   TextColor="LightSlateGray"/>
-
-                    </StackLayout>
-
-                </ViewCell>
+                    </ViewCell>
             </DataTemplate>
         </ListView.ItemTemplate>
     </ListView>

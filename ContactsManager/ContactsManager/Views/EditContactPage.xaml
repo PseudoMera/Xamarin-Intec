@@ -12,23 +12,41 @@
     </ContentPage.ToolbarItems>
     
     <ContentPage.Content>
+        <ScrollView>
         <StackLayout Padding="20">
-            <Frame Style="{StaticResource FrameStyleContacts}">
-                <Image Source="{Binding MyContact.Photo}"
-                       Style="{StaticResource ImagesStyle}"/>
+            <Frame Style="{StaticResource FrameStyleAddEdit}">
+                <Image Source="{Binding MyContact.Photo}"/>
             </Frame>
-            <Entry Placeholder="First name"
+
+                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                    <Button Style="{StaticResource ButtonStyle}"
+                            Padding="20"
+                            Text="Take photo"
+                            Command="{Binding TakePhoto}"/>
+
+                    <Button Style="{StaticResource ButtonStyle}"
+                            Padding="20"
+                            Text="Pick photo"
+                            Command="{Binding PickPhoto}"/>
+                </StackLayout>
+                <Entry Placeholder="First name"
                    Text="{Binding MyContact.FirstName}"/>
             <Entry Placeholder="Last name"
                    Text="{Binding MyContact.LastName}"/>
             <Entry Placeholder="Phone number"
-                   Text="{Binding MyContact.PhoneNumber}"/>
+                   Text="{Binding MyContact.PhoneNumber}"
+                   Keyboard="Numeric"/>
             <Entry Placeholder="Email"
-                   Text="{Binding MyContact.Email}"/>
+                   Text="{Binding MyContact.Email}"
+                   Keyboard="Email"/>
             <Entry Placeholder="Adress"
                    Text="{Binding MyContact.Adress}"/>
             <Entry Placeholder="Relationship"
                    Text="{Binding MyContact.Relationship}"/>
+            <Label Text="{Binding EditError}"
+                   HorizontalOptions="Center"
+                   TextColor="Red"/>
         </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

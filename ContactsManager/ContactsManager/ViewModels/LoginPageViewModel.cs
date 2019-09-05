@@ -19,6 +19,7 @@ namespace ContactsManager.ViewModels
         public ICommand RegisterCommand { get; set; }
         public Account MyAccount { get; set; } = new Account();
 
+        public AccountDB Db { get; set; } = new AccountDB();
         public string LoginError { get; set; }
 
         public LoginPageViewModel()
@@ -30,7 +31,14 @@ namespace ContactsManager.ViewModels
 
                 if(LoginError.Equals(string.Empty))
                 {
-                    await App.Current.MainPage.Navigation.PushAsync(new ContactsListPage());
+                    var validData = Db.LoginValidate(MyAccount.Email, MyAccount.Password);
+                    if (validData)
+                    {
+                        Account account = Db.FindAccount(MyAccount.Email);
+                        await App.Current.MainPage.Navigation.PushAsync(new ContactsListPage(account));
+                    }
+                    else
+                        LoginError = "Your credentials are wrong"; 
                 }
                 
                

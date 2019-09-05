@@ -17,6 +17,8 @@ namespace ContactsManager.ViewModels
         public ICommand RegisterCommand { get; set; }
         public string ConfirmPassword { get; set; }
 
+        public AccountDB Db { get; set; } = new AccountDB();
+
         public string RegisterError { get; set; }
         
 
@@ -29,7 +31,14 @@ namespace ContactsManager.ViewModels
 
                 if(RegisterError.Equals(string.Empty))
                 {
-                    await App.Current.MainPage.Navigation.PushAsync(new ContactsListPage());
+                    var validData = Db.AddAccount(MyAccount);
+                    if (validData)
+                    {
+                        Account account = Db.FindAccount(MyAccount.Email);
+                        await App.Current.MainPage.Navigation.PushAsync(new ContactsListPage(account));
+                    }
+                    else
+                        RegisterError = "This account already exists";
                 }
             });
 

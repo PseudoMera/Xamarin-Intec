@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="ContactsManager.Views.ContactDetailsPage"
+             Title="Contact details">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" Padding="20" VerticalOptions="CenterAndExpand">
+            <Frame Style="{StaticResource FrameStyleAddEdit}">
+                <Image Source="{Binding MyContact.Photo}"/>
+            </Frame>
+            <Frame BorderColor="#000000" CornerRadius="20">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    
+                <Label Text="{Binding MyContact.FirstName}"
+                       Style="{StaticResource DetailsLabel}"
+                       Grid.Column="0" 
+                       Grid.Row="0"
+                       />
+                    
+                <Label Text="{Binding MyContact.LastName}"
+                       Style="{StaticResource DetailsLabel}"
+                       Grid.Column="0"
+                       Grid.Row="1"/>
+
+                    <Label Text="{Binding MyContact.PhoneNumber}"
+                       Style="{StaticResource DetailsLabel}"
+                       Grid.Column="0"
+                       Grid.Row="3"/>
+
+                    <Label Text="{Binding MyContact.Email}"
+                       Style="{StaticResource DetailsLabel}"
+                       Grid.Column="0"
+                       Grid.Row="2"/>
+                              
+                <Label Text="{Binding MyContact.Adress}"
+                       Style="{StaticResource DetailsLabel}"
+                       Grid.Column="0"
+                       Grid.Row="4"/>
+                    
+                <Label Text="{Binding MyContact.Relationship}"
+                       Style="{StaticResource DetailsLabel}"
+                       Grid.Column="0"
+                       Grid.Row="5"/>
+                    
+                </Grid>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

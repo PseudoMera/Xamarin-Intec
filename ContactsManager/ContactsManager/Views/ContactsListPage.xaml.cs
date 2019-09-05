@@ -1,4 +1,5 @@
-﻿using ContactsManager.ViewModels;
+﻿using ContactsManager.Models;
+using ContactsManager.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +14,17 @@ namespace ContactsManager.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ContactsListPage : ContentPage
     {
-        public ContactsListPage()
+        public ContactsListPage(Account account)
         {
             InitializeComponent();
-            this.BindingContext = new ContactsListPageViewModel();
+            this.BindingContext = new ContactsListPageViewModel(account);
+        }
+
+        async void OnItemTapped(object sender, ItemTappedEventArgs eve)
+        {
+            var content = eve.Item as Contact;
+
+            await App.Current.MainPage.Navigation.PushAsync(new ContactDetailsPage(content));
         }
     }
 }

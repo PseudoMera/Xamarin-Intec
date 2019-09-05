@@ -15,36 +15,42 @@
     <ContentPage.Content>
         <ScrollView>
         <StackLayout Padding="20">
-            <Frame Style="{StaticResource FrameStyleContacts}">
+            <Frame Style="{StaticResource FrameStyleAddEdit}">
                 <Image x:Name="image"
-                       Source="{Binding contact.Photo}"/>
+                       Source="{Binding contact.Photo}"
+                       />
             </Frame>
-            <Button x:Name="takePhoto"
-                    Text="Take photo"
-                    Style="{StaticResource ButtonStyle}"
-                    HorizontalOptions="Center"
-                    Padding="20"
-                    Command="{Binding TakePhotoClicked}"/>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                   <Button x:Name="takePhoto"
+                            Text="Take photo"
+                            Style="{StaticResource ButtonStyle}"
+                            Padding="20"
+                            Command="{Binding TakePhotoClicked}"/>
             
-            <Button x:Name="pickPhoto"
-                    Text="Pick photo"
-                    Style="{StaticResource ButtonStyle}"
-                     HorizontalOptions="Center"
-                    Padding="20"/>
-            
-            <Entry Placeholder="First name"
+                   <Button x:Name="pickPhoto"
+                            Text="Pick photo"
+                            Style="{StaticResource ButtonStyle}"
+                            Padding="20"
+                            Command="{Binding PickPhoto}"/>
+                </StackLayout>
+             <Entry Placeholder="First name"
                    Text="{Binding contact.FirstName}"/>
             <Entry Placeholder="Last name"
                    Text="{Binding contact.LastName}"/>
             <Entry Placeholder="Phone number"
-                   Text="{Binding contact.PhoneNumber}"/>
+                   Text="{Binding contact.PhoneNumber}"
+                   Keyboard="Numeric"/>
             <Entry Placeholder="Email"
-                   Text="{Binding contact.Email}"/>
+                   Text="{Binding contact.Email}"
+                   Keyboard="Email"/>
             <Entry Placeholder="Adress"
                    Text="{Binding contact.Adress}"/>
             <Entry Placeholder="Relationship"
                    Text="{Binding contact.Relationship}"/>
-        </StackLayout>
+                <Label Text="{Binding AddError}"
+                       HorizontalOptions="CenterAndExpand"
+                       TextColor="Red"/>
+            </StackLayout>
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>
