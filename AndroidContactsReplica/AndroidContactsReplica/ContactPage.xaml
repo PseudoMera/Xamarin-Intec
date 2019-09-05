@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="AndroidContactsReplica.ContactPage"
+             >
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="More"
+                      Order="Secondary"
+                     Priority="0"
+                     />
+    </ContentPage.ToolbarItems>
+
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal" >
+            <Label Text="X"
+               FontSize="Subtitle"
+               VerticalOptions="CenterAndExpand"
+               HorizontalOptions="Start"
+                   TextColor="White"
+                   Margin="10,10,30,10"/>
+
+            <Label Text="Create contact"
+               TextColor="White"
+               VerticalOptions="CenterAndExpand"
+               HorizontalOptions="StartAndExpand"
+               FontSize="Subtitle"/>
+
+            <Label Text="Save"
+                   TextColor="#64b5f6
+
+"
+                   HorizontalOptions="End"
+                   VerticalOptions="CenterAndExpand"/>
+
+
+        </StackLayout>
+    </NavigationPage.TitleView>
+
+    <ContentPage.Content>
+        <ScrollView>
+        <StackLayout Orientation="Vertical" >
+
+            <StackLayout Padding="10" BackgroundColor="#e0e0e0" Orientation="Horizontal">
+                    <Label Text="save to" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"/>
+                    <Picker FontSize="Small" Title="Select an email" HorizontalOptions="Center" VerticalOptions="StartAndExpand">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>char0394@gmail.com</x:String>
+                            <x:String>albinest@gmail.com</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+            </StackLayout>
+
+            <StackLayout VerticalOptions="CenterAndExpand" Padding="20">
+                <Frame Padding="0"
+                       CornerRadius="35"
+                       WidthRequest="70"
+                       HeightRequest="70"
+                       IsClippedToBounds="True"
+                       HorizontalOptions="Center"
+                       Margin="15,5,15,5"
+                    BackgroundColor="Blue">
+                    <Image Source="baseline_add_a_photo_white_18"
+                           HorizontalOptions="CenterAndExpand"
+                           VerticalOptions="CenterAndExpand"/>
+                </Frame>
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="9*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Image Source="baseline_person_outline_black_18" Grid.Column="0" Grid.Row="0"/>
+                        <Image Source="baseline_local_phone_black_18" Grid.Column="0" Grid.Row="3"/>
+                        <Image Source="baseline_location_city_black_18" Grid.Column="0" Grid.Row="2"/>
+                        <Image Source="outline_email_black_18" Grid.Column="0" Grid.Row="5"/>
+
+                        <Entry Placeholder="First Name" Grid.Row="0" Grid.Column="1"/>
+                        <Entry Placeholder="Last Name" Grid.Row="1" Grid.Column="1"/>
+                        <Entry Placeholder="Company" Grid.Row="2" Grid.Column="1"/>
+                        <Entry Placeholder="Phone" Grid.Row="3" Grid.Column="1"/>
+                        <Picker Title="Mobile" Grid.Column="1" Grid.Row="4">
+                            <Picker.ItemsSource>
+                                <x:Array Type="{x:Type x:String}">
+                                    <x:String>Mobile</x:String>
+                                    <x:String>Telephone</x:String>
+                                </x:Array>
+                            </Picker.ItemsSource>
+                        </Picker>
+                        <Entry Placeholder="Email" Grid.Row="5" Grid.Column="1"/>
+                        <Entry Placeholder="Home" Grid.Row="6" Grid.Column="1"/>
+                        <Label Text="More fields"
+                               TextColor="Blue"
+                               Grid.Row="7" Grid.Column="1"/>
+                    </Grid>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
