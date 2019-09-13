@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="RequestPractice.Views.ContactsPage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Get Contacts"
+                     Command="{Binding GetContactsCommand}"/>
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+        <ListView ItemsSource="{Binding Contacts}" 
+              HasUnevenRows="True" 
+              SeparatorColor="#005cb2" 
+              CachingStrategy="RecycleElement"
+              x:Name="contactsList"
+              SelectedItem="{Binding SelectedContact, Mode=TwoWay}">
+
+            <ListView.ItemTemplate >
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.ContextActions>
+                            <MenuItem Text="More"
+                                      Command="{Binding Path=BindingContext.EditContactCommand, Source={x:Reference contactsList}}"
+                                      CommandParameter="{Binding .}"/>
+                            <MenuItem Text="Delete"
+                                      IsDestructive="True"
+                                      Command="{Binding Path=BindingContext.DeleteContactCommand, Source={x:Reference contactsList}}"
+                                      CommandParameter="{Binding .}"/>
+                        </ViewCell.ContextActions>
+
+                        <StackLayout Orientation="Vertical" Padding="20">
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding FirstName}"
+                                       FontSize="Body"
+                                       VerticalOptions="Center"
+                                       TextColor="#000000"/>
+
+                                <Label Text="{Binding Nickname}"
+                                        FontSize="Body"
+                                       VerticalOptions="Center"
+                                       TextColor="#000000"/>
+
+                                <Label Text="{Binding LastName}"
+                                        FontSize="Body"
+                                       VerticalOptions="Center"
+                                       TextColor="#000000"/>
+                                
+                                
+                            </StackLayout>
+
+                            <Label Text="{Binding Company}"
+                                   TextColor="#34515e"/>
+
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView> 
+    </ContentPage.Content>
+</ContentPage>
