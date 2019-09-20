@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Services\PhotoIOS.cs" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -120,6 +121,9 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Plugin.Permissions">
+      <Version>5.0.0-beta</Version>
+    </PackageReference>
     <PackageReference Include="SkiaSharp">
       <Version>1.68.0</Version>
     </PackageReference>
@@ -136,4 +140,5 @@
       <Name>PaintCopy</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
 </Project>

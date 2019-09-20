@@ -1,4 +1,7 @@
-﻿using SkiaSharp;
+﻿using PaintCopy.Services;
+using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
+using SkiaSharp;
 using SkiaSharp.Views.Forms;
 using System;
 using System.Collections.Generic;
@@ -18,10 +21,13 @@ namespace PaintCopy.Views
     {
         public Dictionary<Xamarin.Forms.Color, SKColor> ColorDictionary { get; set; }
         public Button RealButton { get; set; } = new Button();
+
+        SKImage myImage = null;
+
         public CanvasPage()
         {
             InitializeComponent();
-            
+
             ColorDictionary = new Dictionary<Color, SKColor>();
             ColorDictionary.Add(Color.Red, SKColors.Red);
             ColorDictionary.Add(Color.Blue, SKColors.Blue);
@@ -32,15 +38,26 @@ namespace PaintCopy.Views
             RealButton.BackgroundColor = Color.Green;
         }
 
-        private List<SKPath> paths = new List<SKPath>();
+        // private List<SKPath> paths = new List<SKPath>();
         private List<Color> MyColors = new List<Color>();
+        private LinkedList<SKPath> paths = new LinkedList<SKPath>();
+        private LinkedList<SKPath> trackChanges = new LinkedList<SKPath>();
+
         private void OnPainting(object sender, SKPaintSurfaceEventArgs e)
         {
+            var info = e.Info;
             var surface = e.Surface;
             var canvas = surface.Canvas;
             canvas.Clear(SKColors.White);
             int index = 0;
-           
+
+            //Roniel me dio un hint, muchas gracias!
+            if(libraryBitmap != null)
+            {
+                canvas.DrawBitmap(libraryBitmap,
+                 new SKRect(0, 0, info.Width,info.Height ));
+            }
+
             foreach (var touchPath in paths)
             {
                 Color color = MyColors[index];
@@ -51,11 +68,15 @@ namespace PaintCopy.Views
                     Style = SKPaintStyle.Stroke
                 };
                 canvas.DrawPath(touchPath, stroke);
-                index++; 
+                index++;
             }
+            myImage = surface.Snapshot();
+
         }
 
         private Dictionary<long, SKPath> temporaryPaths = new Dictionary<long, SKPath>();
+        private SKBitmap libraryBitmap;
+
         private void OnTouch(object sender, SKTouchEventArgs e)
         {
             switch (e.ActionType)
@@ -71,7 +92,7 @@ namespace PaintCopy.Views
                         temporaryPaths[e.Id].LineTo(e.Location);
                     break;
                 case SKTouchAction.Released:
-                    paths.Add(temporaryPaths[e.Id]);
+                    paths.AddLast(temporaryPaths[e.Id]);
                     temporaryPaths.Remove(e.Id);
                     break;
             }
@@ -88,26 +109,98 @@ namespace PaintCopy.Views
             RealButton.BackgroundColor = myButton.BackgroundColor;
         }
 
-        private void ClearClicked(object sender, EventArgs e)
+        private async void ClearClicked(object sender, EventArgs e)
         {
 
+            var option = await App.Current.MainPage.DisplayActionSheet("Warning", "Cancel", "DO IT!");
+            if (option == "Cancel") return;
+
+            trackChanges.Clear();
             MyColors.Clear();
             paths.Clear();
-            //I think we can use this x name to work around the mvvm
             PaintCopy.InvalidateSurface();
+
+        }
+
+        private async void ImageClicked(object sender, EventArgs e)
+        {
+
+            var status = await CrossPermissions.Current.CheckPermissionStatusAsync<StoragePermission>();
+
+            if (status != PermissionStatus.Granted)
+            {
+
+                status = await CrossPermissions.Current.RequestPermissionAsync<StoragePermission>();
+            }
+
+            if (status == PermissionStatus.Granted)
+            {                       
+
+                PaintCopy.InvalidateSurface();
+
+                SKData data = myImage.Encode(SKEncodedImageFormat.Png, 100);
+                DateTime dt = DateTime.Now;
+                string filename = String.Format("FingerPaint-{0:D4}{1:D2}{2:D2}-{3:D2}{4:D2}{5:D2}{6:D3}.png",
+                                                dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second, dt.Millisecond);
+
+                IPhoto photoLibrary = DependencyService.Get<IPhoto>();
+                bool result = await photoLibrary.SavePhotoAsync(data.ToArray(), "FingerPaint", filename);
+
+                if (!result)
+                {
+                    await DisplayAlert("FingerPaint", "Artwork could not be saved. Sorry!", "OK");
+                }
+
+
+            }
+        }
+
+            private async void UndoClick(object sender, EventArgs e)
+            {
+                try
+                {
+                    var node = paths.Last;
+                    paths.Remove(paths.Last);
+                    trackChanges.AddLast(node);
+                    PaintCopy.InvalidateSurface();
+                }
+                catch (ArgumentException ex)
+                {
+                    await App.Current.MainPage.DisplayAlert("Error", "There is nothing to undo!", "Ok");
+                }
+
+            }
+
+            private async void RedoClick(object sender, EventArgs e)
+            {
+                try
+                {
+                    var node = trackChanges.Last;
+                    trackChanges.Remove(trackChanges.Last);
+                    paths.AddLast(node);
+                    PaintCopy.InvalidateSurface();
+                }
+                catch (ArgumentNullException ex)
+                {
+                    await App.Current.MainPage.DisplayAlert("Error", "There is nothing to redo", "Ok");
+                }
+            }
+
+        private async void PickClick(object sender, EventArgs e)
+        {
+          
+                IPhoto photoLibrary = DependencyService.Get<IPhoto>();
+
+                using (Stream stream = await photoLibrary.PickPhotoAsync())
+                {
+                    if (stream != null)
+                    {
+                        libraryBitmap = SKBitmap.Decode(stream);
+                        PaintCopy.InvalidateSurface();
+                    }
+                }
             
         }
-
-        private void ImageClicked(object sender, EventArgs e)
-        {
-            PaintCopy.PaintSurface += (s, ee) =>
-            {
-                SKImage myImage = ee.Surface.Snapshot();
-                SKData encodedImage = myImage.Encode(SKEncodedImageFormat.Png, 100);
-
-            };
-
-            PaintCopy.InvalidateSurface();
-        }
     }
-}
+  }
+

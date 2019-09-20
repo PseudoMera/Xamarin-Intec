@@ -12,6 +12,13 @@
                      Clicked="ClearClicked"/>
         <ToolbarItem Text="Image"
                      Clicked="ImageClicked"/>
+        <ToolbarItem Text="Undo"
+                     Clicked="UndoClick"/>
+        <ToolbarItem Text="Redo"
+                     Clicked="RedoClick"/>
+        <ToolbarItem Text="Pick Image"
+                     Clicked="PickClick"/>
+
     </ContentPage.ToolbarItems>
     
     <Grid>

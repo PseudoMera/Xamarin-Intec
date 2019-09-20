@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:views="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
+             xmlns:local="clr-namespace:Paint.ViewModels"
+             mc:Ignorable="d"
+             x:Class="Paint.Views.CanvasPage"
+             >
+    <Grid>
+        <views:SKCanvasView EnableTouchEvents="True">
+            <views:SKCanvasView.Behaviors>
+                <local:PaintSurfaceCommandBehavior Command="{Binding PaintCommand}"/>
+                <local:TouchCommandBehavior Command="{Binding TouchCommand}"/>
+            </views:SKCanvasView.Behaviors>
+        </views:SKCanvasView>
+    </Grid>
+</ContentPage>
