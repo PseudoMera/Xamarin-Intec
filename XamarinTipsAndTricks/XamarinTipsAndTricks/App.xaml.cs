@@ -1,6 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XamarinTipsAndTricks.Views;
 
 namespace XamarinTipsAndTricks
 {
@@ -10,7 +11,7 @@ namespace XamarinTipsAndTricks
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new NavigationPage(new StringFormatPage());
         }
 
         protected override void OnStart()

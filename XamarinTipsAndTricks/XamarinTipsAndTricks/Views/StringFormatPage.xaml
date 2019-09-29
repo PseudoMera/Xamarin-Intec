@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="XamarinTipsAndTricks.Views.StringFormatPage"
+             Title="String Format Trick">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Next Trick"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="CenterAndExpand"
+                     Padding="20">
+            <Label Text="{Binding  MyUser.Username, StringFormat='Welcome {0}'}"/>
+            <Entry Text="{Binding MyUser.Username, Mode=TwoWay}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
