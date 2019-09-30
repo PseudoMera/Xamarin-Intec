@@ -16,18 +16,23 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\GenericStylesPage.xaml.cs">
+      <DependentUpon>GenericStylesPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\StringFormatPage.xaml.cs">
       <DependentUpon>StringFormatPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Views\GenericStylesPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\StaticPropertyPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\StringFormatPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Helpers\" />
   </ItemGroup>
 </Project>

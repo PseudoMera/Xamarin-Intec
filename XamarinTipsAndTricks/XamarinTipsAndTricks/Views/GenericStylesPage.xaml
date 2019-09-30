@@ -4,21 +4,17 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="XamarinTipsAndTricks.Views.StringFormatPage"
-             Title="String Format Trick">
+             x:Class="XamarinTipsAndTricks.Views.GenericStylesPage"
+             Title="Generic Style Trick">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Next Trick"
                      Command="{Binding ChangePageCommand}"/>
     </ContentPage.ToolbarItems>
-    
     <ContentPage.Content>
-        <ScrollView>
-        <StackLayout VerticalOptions="CenterAndExpand"
-                     Padding="20">
-            <Label Text="{Binding  MyUser.Username, StringFormat='Welcome {0}'}"/>
-            <Entry Text="{Binding MyUser.Username, Mode=TwoWay}"
-                   Placeholder="Type something"/>
+        <StackLayout VerticalOptions="CenterAndExpand">
+            <Frame>
+                
+            </Frame>
         </StackLayout>
-        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
