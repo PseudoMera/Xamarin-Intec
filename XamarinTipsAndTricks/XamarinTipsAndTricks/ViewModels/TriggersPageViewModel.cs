@@ -7,11 +7,11 @@ using XamarinTipsAndTricks.Views;
 
 namespace XamarinTipsAndTricks.ViewModels
 {
-    class GenericStylesPageViewModel
+    public class TriggersPageViewModel
     {
         public ICommand ChangePageCommand { get; set; }
 
-        public GenericStylesPageViewModel()
+        public TriggersPageViewModel()
         {
             ChangePageCommand = new Command(async () =>
             {
