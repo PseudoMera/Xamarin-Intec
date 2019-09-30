@@ -12,6 +12,7 @@
                      Command="{Binding ChangePageCommand}"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
+        <ScrollView>
         <StackLayout VerticalOptions="CenterAndExpand"
                      Padding="20">
             <Entry Placeholder="enter name">
@@ -24,5 +25,6 @@
                 </Entry.Triggers>
             </Entry>
         </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
