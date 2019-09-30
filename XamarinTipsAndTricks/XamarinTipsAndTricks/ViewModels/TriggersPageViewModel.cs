@@ -7,7 +7,7 @@ using XamarinTipsAndTricks.Views;
 
 namespace XamarinTipsAndTricks.ViewModels
 {
-    public class TriggersPageViewModel
+    public class TriggersPageViewModel 
     {
         public ICommand ChangePageCommand { get; set; }
 
@@ -15,7 +15,7 @@ namespace XamarinTipsAndTricks.ViewModels
         {
             ChangePageCommand = new Command(async () =>
             {
-                await App.Current.MainPage.Navigation.PushAsync(new TriggersPage());
+                await App.Current.MainPage.Navigation.PushAsync(new VisualStatePage());
             });
         }
     }
